@@ -5,9 +5,9 @@ namespace App\Validator;
 use Symfony\Component\Validator\Constraint;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
-final class YesNo extends Constraint
+final class StockRestriction extends Constraint
 {
-    public string $message = 'The value "{{ value }}" must be "yes" or "".';
+    public string $message = 'The cost "{{ cost }}" its less than 5 and the stock "{{ stock }}" is less than 10 ';
 
     // You can use #[HasNamedArguments] to make some constraint options required.
     // All configurable options must be passed to the constructor.
@@ -17,10 +17,5 @@ final class YesNo extends Constraint
         mixed $payload = null
     ) {
         parent::__construct([], $groups, $payload);
-    }
-
-    public function validatedBy(): string
-    {
-        return static::class . 'Validator';
     }
 }
